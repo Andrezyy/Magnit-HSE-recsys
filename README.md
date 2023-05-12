@@ -18,6 +18,8 @@ Dockerfile:
 - в папке models модель
 - в папке stuff необходимые данные
 - В связи с этим в Dokerfile было добавленно 2 дополнительные строчки
+- Создание образа `docker build --pull --rm -f "Dockerfile" -t my-project "."` 
+- Запуск контейнера `docker run --rm -p 5000:5000 -v ~/my_project/log:/my_project/log -v ~/my_project/data:/my_project/data --name my_script my-project:latest`
 
 Немного про запуск решения:
 - После зарузки входной файл теперь называется input.csv, выходной файл с рекомендациями output.csv
