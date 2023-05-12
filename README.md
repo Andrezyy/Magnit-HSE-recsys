@@ -24,6 +24,11 @@ Dockerfile:
 - Чтобы получить рекомендации надо перейти по /start
 
 С форматом входного и выходного файла до последнего не было полного понимания, поэтому напишу что у меня.
-Ожидаемый входной csv файл:
-![minipic](https://github.com/Andrezyy/Magnit-HSE-recsys/pictures/input1.png)
+
+<br/>Ожидаемый входной csv файл:
+<br/>![minipic](https://github.com/Andrezyy/Magnit-HSE-recsys/blob/main/pictures/input.png)
+
+<br/>Выходной файл
+<br/>![minipic](https://github.com/Andrezyy/Magnit-HSE-recsys/blob/main/pictures/output1.png)
+
 
