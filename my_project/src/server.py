@@ -177,8 +177,8 @@ def show_file():
 # Вида: UID, [{top 1 rec: rating},[top 10 recs]]
 
 # Функция если входные данные (уже в виде датафрейма) будут формата: index, UID 
-@app.route("/get_recs")
-def get_recs():
+@app.route("/start")
+def start():
     
     users = pd.read_csv(DATA_FOLDER + 'input.csv')
     recs = []
@@ -202,7 +202,7 @@ def get_recs():
                 rec = get_k_recs(model, uid, n = 10, known_jokes = known_jokes)
             recs.append(rec)
         
-    users['Recs'] = recs
+    users['rec'] = recs
     users.to_csv(DATA_FOLDER + 'output.csv', index = False)
     
     return 'Для того, чтобы взглянуть на результат перейдите по следующей ссылке: /show_data?path=output&type=csv'
