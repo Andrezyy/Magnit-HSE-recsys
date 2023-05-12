@@ -36,14 +36,14 @@ def get_k_recs(model, uid, n = 10, known_jokes = None):
     
     preds = np.concatenate([joke_ids, preds],axis = -1)
     preds = preds[preds[:, 1].argsort()][::-1]
-    top_rmse = {preds[0,0]: preds[0, 1]}
+    top_rmse = {int(preds[0,0]): preds[0, 1]}
     preds = preds[:, 0]
     
     if known_jokes is None:
-        return [top_rmse, list(preds[:n+1])]
+        return [top_rmse, list(preds[:n+1].astype(int))]
     else:
         preds = preds[~np.isin(preds, known_jokes)]
-        return [top_rmse, list(preds[:n+1])]
+        return [top_rmse, list(preds[:n+1].astype(int))]
 
 # Функция для получения 10 шуток для которого не было в системе UID
 # Из-за отсутствия какой либо информации и вкусах пользователя
@@ -56,7 +56,7 @@ def cold_start():
         j = j[~np.isin(j, recs)]
         j = np.random.choice(j, 2)
         recs = np.concatenate([recs, j])
-    return [{np.random.choice(recs, 1)[0]: 0.8817}, recs]
+    return [{int(np.random.choice(recs, 1)[0]): 0.8817}, recs.astype(int)]
         
     
 
