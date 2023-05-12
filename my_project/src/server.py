@@ -40,10 +40,10 @@ def get_k_recs(model, uid, n = 10, known_jokes = None):
     preds = preds[:, 0]
     
     if known_jokes is None:
-        return [top_rmse, preds[:n+1]]
+        return [top_rmse, list(preds[:n+1])]
     else:
         preds = preds[~np.isin(preds, known_jokes)]
-        return [top_rmse, preds[:n+1]]
+        return [top_rmse, list(preds[:n+1])]
 
 # Функция для получения 10 шуток для которого не было в системе UID
 # Из-за отсутствия какой либо информации и вкусах пользователя
@@ -188,7 +188,7 @@ def get_recs():
             # Находим шутки которые пользователь уже видел
             known_jokes = data[data.UID == uid].JID.values
             # Выбираем из них половину а другую половину забываем. То есть некоторые прочитанные шутки могут попасться снова
-            known_jokes = np.random.choice(known_jokes, size = int(np.round(len(known_jokes)/2)))
+            known_jokes = np.random.choice(known_jokes, size = int(np.round(len(known_jokes)*0.75)))
             # Это своеобразный трейдоф между novelty и точностью MAP@10, так как рейтинги знакомых шуток система знает хорошо 
             # Да и логику рекомендательных систем это никак не нарушает, поскольку нет ничего такого, чтобы порекомендовать
             # что то такое, что пользователь уже видел или пробовал. Главное чтобы ему это понравилось!
